@@ -1,7 +1,14 @@
 #!/bin/bash
+#Требуется подача двух директорий на вход
+if [[ $# -ne 2 ]]; then
+    echo "Требуется ввести: $0 input_dir output_dir"
+    exit 1
+fi
 # Задаем входную и выходную директории из переданных аргументов
 input_directory=$1
 output_directory=$2
+#Обработка скрытых файлов
+shopt -s dotglob
 if [[ ! -d "$output_directory" ]]; then # Проверяем, существует ли выходная директория, и если нет, то создаем ее
     mkdir -p "$output_directory"
 fi
